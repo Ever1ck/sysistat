@@ -14,13 +14,6 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            steps {
-                timeout(time: 4, unit: 'MINUTES'){
-                    sh "python manage.py runserve"
-                }
-            }
-        }
         stage('Test') {
             steps {
                 timeout(time: 4, unit: 'MINUTES'){
