@@ -18,8 +18,7 @@ pipeline {
             steps {
                 timeout(time: 4, unit: 'MINUTES'){
                     // Se cambia <test> por <install> para que se genere el reporte de jacoco
-                    sh "cd/istat"
-                    sh "python3 manage.py test"
+                    sh "python3 istat/manage.py test"
                 }
             }
         }
