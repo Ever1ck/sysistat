@@ -22,5 +22,27 @@ pipeline {
                 }
             }
         }
+        stage('Server') {
+            steps {
+                timeout(time: 4, unit: 'MINUTES'){
+                    // Se cambia <test> por <install> para que se genere el reporte de jacoco
+                    sh "python3 istat/manage.py runserver"
+                }
+            }
+        }
+        stage('pyTest') {
+            steps {
+                timeout(time: 4, unit: 'MINUTES'){
+                    // Se cambia <test> por <install> para que se genere el reporte de jacoco
+                    script {
+                // Cambiar al directorio 'istat'
+                dir('istat') {
+                    // Ejecutar pytest dentro del directorio 'istat'
+                    sh "pytest"
+                }
+            }
+                }
+            }
+        }
     }
 }
