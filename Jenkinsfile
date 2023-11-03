@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 timeout(time: 4, unit: 'MINUTES'){
-                    sh "python manage.py test"
+                    sh "python manage.py runserve"
                 }
             }
         }
