@@ -35,7 +35,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube Server') {
                 sh '''
                     sonar-scanner \
-                    -Dsonar.projectKey=myPythonProject \
+                    -Dsonar.projectKey=Istat2 \
                     -Dsonar.sources=. \
                     -Dsonar.host.url=http://docker.sonar:9000 \
                     -Dsonar.login=admin
