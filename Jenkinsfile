@@ -24,7 +24,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('Sonarqube') {
                     // Ejecuta el análisis de SonarQube
                     sh 'sonar-scanner'  // Asegúrate de que 'sonar-scanner' esté instalado en tu entorno
                 }
