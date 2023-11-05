@@ -22,15 +22,15 @@ pipeline {
                 }
             }
         }
-        /*stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube_Server_Name') {
+                withSonarQubeEnv('SonarQube') {
                     // Ejecuta el análisis de SonarQube
                     sh 'sonar-scanner'  // Asegúrate de que 'sonar-scanner' esté instalado en tu entorno
                 }
             }
-        }*/
-        stage('SonarQube Analysis') {
+        }
+        /*stage('SonarQube Analysis') {
             steps { 
                 withSonarQubeEnv('SonarQube Server') {
                 sh '''
@@ -43,6 +43,6 @@ pipeline {
                 '''
                 }
             }
-        }
+        }*/
     }
 }
