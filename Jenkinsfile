@@ -14,6 +14,12 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                sh 'pip install -r requirements.txt'
+                sh 'python manage.py migrate'
+            }
+        }
         stage('Test') {
             steps {
                 timeout(time: 4, unit: 'MINUTES'){
