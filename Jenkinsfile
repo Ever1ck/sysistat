@@ -14,11 +14,6 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            steps {
-                sh 'python manage.py migrate'
-            }
-        }
         stage('Test') {
             steps {
                 timeout(time: 4, unit: 'MINUTES'){
@@ -29,11 +24,9 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    def scannerHome = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withEnv(["PATH+SONAR_SCANNER=${scannerHome}/bin"]) {
-                        sh 'sonar-scanner -Dsonar.host.url=$192.168.100.231:9000 -Dsonar.projectKey=$sqb_905b0903c4a1cdcc648d8a32ae9103417ebeb24d -Dsonar.projectName=$Istat'
-                    }
+                withSonarQubeEnv('SonarQube_Server_Name') {
+                    // Ejecuta el análisis de SonarQube
+                    sh 'sonar-scanner'  // Asegúrate de que 'sonar-scanner' esté instalado en tu entorno
                 }
             }
         }
