@@ -22,11 +22,25 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
+        /*stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube_Server_Name') {
                     // Ejecuta el análisis de SonarQube
                     sh 'sonar-scanner'  // Asegúrate de que 'sonar-scanner' esté instalado en tu entorno
+                }
+            }
+        }*/
+        stage('SonarQube Analysis') {
+            steps { 
+                withSonarQubeEnv('SonarQube Server') {
+                sh '''
+                    sonar-scanner \
+                    -Dsonar.projectKey=myPythonProject \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=http://docker.sonar:9000 \
+                    -Dsonar.login=admin
+                    -Dsonar.password=Da12345*
+                '''
                 }
             }
         }
